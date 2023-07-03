@@ -4,6 +4,7 @@
   The solution is recursive
 """
 
+
 def latest_list(list_array=[]):
     """
       This function adds every 2 elements of the array given as para
@@ -28,7 +29,7 @@ def pascal_triangle(n):
       This function computes the pascal triangle recursively
     """
     if n <= 0:
-        return [[]]
+        return []
     if n == 1:
         return [[1]]
     if n == 2:
