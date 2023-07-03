@@ -1,4 +1,8 @@
 #!/usr/bin/python3
+"""
+  This module contains the solution to the pascal triangle imbroglio.
+  The solution is recursive
+"""
 
 def latest_list(list_array=[]):
     """
