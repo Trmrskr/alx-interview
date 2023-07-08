@@ -15,15 +15,15 @@ def canUnlockAll(boxes):
     n = len(boxes)
 
     unlocked_boxes = set([0])
-    locked_boxes = set(boxes[0]).difference(unlocked_boxes)
+    keys_to_test = set(boxes[0]).difference(unlocked_boxes)
 
-    while len(locked_boxes) > 0:
-        boxId = locked_boxes.pop()
+    while len(keys_to_test) > 0:
+        key = keys_to_test.pop()
 
-        if boxId <= 0 or boxId >= n:
+        if key <= 0 or key >= n:
             continue
-        if boxId not in unlocked_boxes:
-            locked_boxes = locked_boxes.union(boxes[boxId])
-            unlocked_boxes.add(boxId)
+        if key not in unlocked_boxes:
+            keys_to_test = keys_to_test.union(boxes[key])
+            unlocked_boxes.add(key)
 
     return n == len(unlocked_boxes)
