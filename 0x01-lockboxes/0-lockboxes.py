@@ -4,9 +4,11 @@ This module contain the canUnlockAll function.
 This function runs in n time O(n). That is why I love it.
 """
 
+
 def canUnlockAll(boxes):
     """
-      canUnlockAll - a function that determines if it can unlock all given boxes
+      canUnlockAll - a function that determines if
+      it can unlock all given boxes
       returns true if it can unlock all given boxes
     """
 
