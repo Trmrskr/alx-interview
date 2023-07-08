@@ -1,26 +1,27 @@
 #!/usr/bin/python3
 """
-  canUnlockAll - looks through a list of boxes and returns true
-  if it got the key to unlock all or return false if it didn't
-  get the key to unlock at least one.
+This module contain the canUnlockAll function.
+This function runs in n time O(n). That is why I love it.
 """
-
 
 def canUnlockAll(boxes):
     """
-      The namespace of the canUnlockAll function
+      canUnlockAll - a function that determines if it can unlock all given boxes
+      returns true if it can unlock all given boxes
     """
 
-    box_length = len(boxes)
-    found = False
-    for i in range(1, box_length):
-        found = False
-        for j in range(0, box_length):
-            if boxes[i] != boxes[j]:
-                if i in boxes[j]:
-                    found = True
-                    continue
-        if found is False:
-            return False
+    n = len(boxes)
 
-    return True
+    unlocked_boxes = set([0])
+    locked_boxes = set(boxes[0]).difference(unlocked_boxes)
+
+    while len(locked_boxes) > 0:
+        boxId = locked_boxes.pop()
+
+        if boxId <= 0 or boxId >= n:
+            continue
+        if boxId not in unlocked_boxes:
+            locked_boxes = locked_boxes.union(boxes[boxId])
+            unlocked_boxes.add(boxId)
+
+    return n == len(unlocked_boxes)
