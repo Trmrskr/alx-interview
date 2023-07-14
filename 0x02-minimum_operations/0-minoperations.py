@@ -5,22 +5,29 @@
 
 def minOperations(n):
     """
-    In a text file, there is a single character H. Your text editor can execute
-    only two operations in this file: Copy All and Paste. Given a number n,
-    write a method that calculates the fewest number of operations needed to
-    result in exactly n H characters in the file.
-    Returns an integer
-    If n is impossible to achieve, returns 0
+    Given that only 2 operations are allowed,
+    The minimum operation to get n characters
+    in a text editor is the operations of minimum operation
+    to get all the prime factors of n.
     """
     if not isinstance(n, int):
         return 0
 
     operations = 0
-    iterator = 2
-    while (iterator <= n):
-        if not (n % iterator):
-            n = int(n / iterator)
-            operations += iterator
-            iterator = 1
-        iterator += 1
+    i = 0
+    prime_number_determinants = [2, 3, 5, 7]
+    size = len(prime_number_determinants)
+
+    while i < size:
+        pnd = prime_number_determinants[i]
+
+        if n % pnd == 0:
+            operations += pnd
+            n = n / pnd
+        else:
+            i += 1
+        if i == size:
+            if n > 1:
+                operations += n
+
     return operations
