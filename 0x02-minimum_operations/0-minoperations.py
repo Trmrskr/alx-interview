@@ -10,6 +10,8 @@ def minOperations(n):
     in a text editor is the operations of minimum operation
     to get all the prime factors of n.
     """
+    if n <= 1:
+        return 0
     if not isinstance(n, int):
         return 0
 
