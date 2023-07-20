@@ -1,9 +1,10 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 """
 Script reads stdin line by line and computes metrics
 """
 
 import sys
+
 
 def printStatus(statusCode, size):
     """print status information"""
@@ -11,6 +12,7 @@ def printStatus(statusCode, size):
     for key in sorted(statusCode.keys()):
         if statusCode[key] != 0:
             print("{} {}".format(key, statusCode[key]))
+
 
 statusCode = {200: 0, 301: 0, 400: 0, 401: 0, 403: 0, 404: 0, 405: 0, 500: 0}
 count = 0
