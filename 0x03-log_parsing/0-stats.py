@@ -41,7 +41,6 @@ def log_stat():
                 pass
         print_status(status_codes, size)
 
-
     except KeyboardInterrupt:
         print_status(status_codes, size)
         raise
