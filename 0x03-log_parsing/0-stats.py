@@ -1,47 +1,46 @@
 #!/usr/bin/python3
-"""
-Script reads stdin line by line and computes metrics
-"""
+
+""" script that reads stdin line by line and computes metrics """
 
 import sys
 
 
-def print_status(status_code, size):
-    """print status information"""
-    print("File size: {}".format(size))
-    for key in sorted(status_code.keys()):
-        if status_code[key] != 0:
-            print("{} {}".format(key, status_code[key]))
+def printStatus(dic, size):
+    """ Prints information """
+    print("File size: {:d}".format(size))
+    for i in sorted(dic.keys()):
+        if dic[i] != 0:
+            print("{}: {:d}".format(i, dic[i]))
 
 
-def log_stat():
-    """Compute the log statistics"""
-    status_code = {"200": 0, "301": 0, "400": 0, "401": 0,
-                   "403": 0, "404": 0, "405": 0, "500": 0}
-    count = 0
-    total_file_size = 0
+# sourcery skip: use-contextlib-suppress
+statusCodes = {"200": 0, "301": 0, "400": 0, "401": 0, "403": 0,
+               "404": 0, "405": 0, "500": 0}
 
-    try:
-        data = sys.stdin.read()
-        lines = data.rstrip().split("\n")
+count = 0
+size = 0
 
-        for line in lines:
-            count += 1
+try:
+    for line in sys.stdin:
+        if count != 0 and count % 10 == 0:
+            printStatus(statusCodes, size)
 
-            if count != 0 and count % 10 == 0:
-                print_status(status_code, total_file_size)
+        stlist = line.split()
+        count += 1
 
-            words = line.split(" ")
-            total_file_size += int(words[-1])
-            code = words[-2]
-            if code in status_code:
-                status_code[code] += 1
-        print_status(status_code, total_file_size)
-    except KeyboardInterrupt:
-        print_status(status_code, total_file_size)
-        raise
+        try:
+            size += int(stlist[-1])
+        except Exception:
+            pass
+
+        try:
+            if stlist[-2] in statusCodes:
+                statusCodes[stlist[-2]] += 1
+        except Exception:
+            pass
+    printStatus(statusCodes, size)
 
 
-if __name__ == "__main__":
-    """The main namespace"""
-    log_stat()
+except KeyboardInterrupt:
+    printStatus(statusCodes, size)
+    raise
