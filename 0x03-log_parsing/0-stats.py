@@ -22,10 +22,7 @@ def log_stat():
     total_file_size = 0
 
     try:
-        data = sys.stdin.read()
-        lines = data.rstrip().split("\n")
-
-        for line in lines:
+        for line in sys.stdin:
             if count != 0 and count % 10 == 0:
                 print_status(status_code, total_file_size)
 
