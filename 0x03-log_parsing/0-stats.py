@@ -16,16 +16,16 @@ def print_status(status_code, size):
 
 def log_stat():
     """Compute the log statistics"""
-    status_code = {200: 0, 301: 0, 400: 0, 401: 0,
-                   403: 0, 404: 0, 405: 0, 500: 0}
+    status_code = {"200": 0, "301": 0, "400": 0, "401": 0,
+                   "403": 0, "404": 0, "405": 0, "500": 0}
     count = 0
     total_file_size = 0
 
     try:
-#        data = sys.stdin.read()
-#        lines = data.rstrip().split("\n")
+        data = sys.stdin.read()
+        lines = data.rstrip().split("\n")
 
-        for line in sys.stdin:
+        for line in lines:
             count += 1
 
             if count != 0 and count % 10 == 0:
@@ -33,7 +33,7 @@ def log_stat():
 
             words = line.split(" ")
             total_file_size += int(words[-1])
-            code = int(words[-2])
+            code = words[-2]
             if code in status_code:
                 status_code[code] += 1
 
@@ -42,7 +42,6 @@ def log_stat():
         raise
     finally:
         print_status(status_code, total_file_size)
-
 
 
 if __name__ == "__main__":
