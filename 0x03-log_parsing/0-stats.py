@@ -22,10 +22,10 @@ def log_stat():
     total_file_size = 0
 
     try:
-        data = sys.stdin.read()
-        lines = data.rstrip().split("\n")
+#        data = sys.stdin.read()
+#        lines = data.rstrip().split("\n")
 
-        for line in lines:
+        for line in sys.stdin:
             count += 1
 
             if count != 0 and count % 10 == 0:
@@ -39,8 +39,10 @@ def log_stat():
 
         print_status(status_code, total_file_size)
     except KeyboardInterrupt:
-        print_status(status_code, total_file_size)
         raise
+    finally:
+        print_status(status_code, total_file_size)
+
 
 
 if __name__ == "__main__":
