@@ -36,11 +36,10 @@ def log_stat():
             code = words[-2]
             if code in status_code:
                 status_code[code] += 1
-
-    except KeyboardInterrupt:
-        raise
-    finally:
         print_status(status_code, total_file_size)
+    except KeyboardInterrupt:
+        print_status(status_code, total_file_size)
+        raise
 
 
 if __name__ == "__main__":
