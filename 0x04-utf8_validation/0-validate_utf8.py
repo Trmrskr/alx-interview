@@ -13,7 +13,7 @@ def dec_bin_converter(num: int) -> str:
     function converts decimal to binary
     """
     bin_bit = ""
-    
+
     while num != 0:
         bin_bit += str(num % 2)
         num = int(num / 2)
@@ -24,6 +24,7 @@ def dec_bin_converter(num: int) -> str:
 
     # The following trick reverses a string
     return bin_bit[::-1]
+
 
 def validUTF8(data: List) -> bool:
     """
@@ -48,7 +49,7 @@ def validUTF8(data: List) -> bool:
                 valid = False
                 break
         elif bin_list[i].startswith('1110'):
-            j = i + 3 
+            j = i + 3
             if j <= bin_list_len:
                 for k in range(i + 1, j):
                     if not bin_list[k].startswith('10'):
@@ -58,7 +59,7 @@ def validUTF8(data: List) -> bool:
                 valid = False
                 break
         elif bin_list[i].startswith('11110'):
-            j = i + 4 
+            j = i + 4
             if j <= bin_list_len:
                 for k in range(i + 1, j):
                     if not bin_list[k].startswith('10'):
@@ -76,5 +77,3 @@ def validUTF8(data: List) -> bool:
         valid = True
 
     return valid
-
-
