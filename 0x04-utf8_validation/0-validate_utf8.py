@@ -34,6 +34,7 @@ def dec_bin_converter(num: int) -> str:
     bin_bit.reverse()
     return "".join(bin_bit)
 
+
 def validity(idx: int, bin_list: List, codept: int) -> Tuple:
     """
     validity - Test a codepoint of binary list for validity
@@ -76,19 +77,19 @@ def validUTF8(data: List) -> bool:
         elif bin_list[i].startswith('110'):
             vi = validity(i, bin_list, '110')
             valid = vi[0]
-            if valid == False:
+            if valid is False:
                 break
             j = vi[1]
         elif bin_list[i].startswith('1110'):
             vi = validity(i, bin_list, '1110')
             valid = vi[0]
-            if valid == False:
+            if valid is False:
                 break
             j = vi[1]
         elif bin_list[i].startswith('11110'):
             vi = validity(i, bin_list, '11110')
             valid = vi[0]
-            if valid == False:
+            if valid is False:
                 break
             j = vi[1]
         else:
