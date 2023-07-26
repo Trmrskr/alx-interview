@@ -10,7 +10,8 @@ from typing import List, Tuple
 
 def dec_bin_converter(num: int) -> str:
     """
-    function converts decimal to binary
+    utf8_dec_to_bin:
+        Converts decimal to binary for utf8 use
     """
     bin_bit = []
 
@@ -18,19 +19,21 @@ def dec_bin_converter(num: int) -> str:
         bin_bit.append(str(num % 2))
         num = int(num / 2)
 
-    # add zeros to string if it is less than 8 bits
     bin_bit_len = len(bin_bit)
 
+    # add zeros to string if it is less than 8 bits
     if bin_bit_len < 8:
         diff = 8 - bin_bit_len
         for i in range(0, diff):
             bin_bit.append('0')
 
+    # remove most significant bit/bits if bits is greater than 8
     if bin_bit_len > 8:
         diff = bin_bit_len - 8
         for i in range(0, diff):
             bin_bit.pop()
 
+    # Reverses the list and return as a string
     bin_bit.reverse()
     return "".join(bin_bit)
 
@@ -49,7 +52,11 @@ def validity(idx: int, bin_list: List, codept: int) -> Tuple:
 
     bin_list_len = len(bin_list)
 
+    # Check if binary list still have enough bytes to satisfy
+    # codepoint conditions. If it does not simply set valid to False
     if j <= bin_list_len:
+        # Check if the next n-1 bytes of a codepoint starts with 10
+        # if any does not set valid to False and break loop
         for k in range(idx + 1, j):
             if not bin_list[k].startswith('10'):
                 valid = False
@@ -69,6 +76,8 @@ def validUTF8(data: List) -> bool:
     valid = False
 
     while i < bin_list_len:
+        # This while loop test for validity to return false
+        # Once it does break and return function
         j = 0
         if bin_list[i].startswith('0'):
             vi = validity(i, bin_list, '0')
@@ -97,6 +106,7 @@ def validUTF8(data: List) -> bool:
             break
         i = j
 
+    # If while loop successfully goes through, set valid to True
     if i == bin_list_len:
         valid = True
 
