@@ -1,11 +1,11 @@
-#!/usr/bin/env python3
-
-from typing import List
+#!/usr/bin/python3
 """
 This module contains two functions.
 dec_bin_converter - converts decimal to binary
 validUTF8 - validate utf8
 """
+
+from typing import List
 
 
 def dec_bin_converter(num: int) -> str:
