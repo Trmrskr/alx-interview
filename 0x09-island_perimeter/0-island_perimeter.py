@@ -7,13 +7,13 @@ def island_perimeter(grid):
 
     def dfs(i, j):
         """Performs depth first search"""
-        if grid[i][j] == 0 or i < 0 or j < 0 or i >= len(grid) \
-                or j >= len(grid[0]):
+        if i < 0 or j < 0 or i >= len(grid) or j >= len(grid[i]) or \
+                grid[i][j] == 0:
             return 1
         if grid[i][j] == 1:
             grid[i][j] = 2
-            return dfs(i - 1, j) + dfs(i, j - 1) + dfs(i + 1, j) + \
-                dfs(i, j + 1)
+            # returns sum of traversal up, left, right, down
+            return dfs(i-1, j) + dfs(i, j-1) + dfs(i+1, j) + dfs(i, j+1)
         return 0
 
     for i in range(0, len(grid)):
